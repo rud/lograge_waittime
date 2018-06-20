@@ -29,4 +29,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'lograge'
 
   s.add_development_dependency 'pry'
+  s.add_development_dependency 'rubocop', '0.56.0' # code consistency
 end
