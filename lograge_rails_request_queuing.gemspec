@@ -27,4 +27,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.2.0"
   s.add_dependency 'lograge'
+
+  s.add_development_dependency 'pry'
 end
