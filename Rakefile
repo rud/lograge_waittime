@@ -30,4 +30,4 @@ end
 desc 'Run all tests'
 task ci: :test
 
-task default: :ci
+task default: :test
