@@ -2,7 +2,7 @@
 
 module LogrageRailsRequestQueuing
   # Hook into Rails loading
-  class Railtie < ::Rails::Engine
+  class Engine < ::Rails::Engine
     isolate_namespace LogrageRailsRequestQueuing
 
     config.eager_load_paths += %W[#{config.root}/lib]
