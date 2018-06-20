@@ -9,10 +9,9 @@ Gem::Specification.new do |s|
   s.version     = LogrageRailsRequestQueuing::VERSION
   s.authors     = ["Laust Rud Jacobsen"]
   s.email       = ["laust@valuestream.io"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of LogrageRailsRequestQueuing."
-  s.description = "TODO: Description of LogrageRailsRequestQueuing."
-  s.license     = "MIT"
+  s.summary     = 'Add request queueing time to lograge output.'
+  s.homepage    = 'https://github.com/rud/lograge_rails_request_queuing'
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
