@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module LogrageRailsRequestQueuing
   class RequestStartedMiddleware
-    def initialize app
+    def initialize(app)
       @app = app
     end
 
-    def call env
+    def call(env)
       @app.call env
     end
   end
