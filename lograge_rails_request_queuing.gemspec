@@ -32,5 +32,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 5.2.0'
 
   s.add_development_dependency 'pry'
-  s.add_development_dependency 'rubocop', '0.56.0' # code consistency
 end

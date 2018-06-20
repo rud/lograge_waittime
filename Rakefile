@@ -27,17 +27,7 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-require 'rubocop/rake_task'
-RuboCop::RakeTask.new(
-  fail_on_error: ENV['CI']
-)
-
-task :rubocop_version do
-  require 'rubocop'
-  puts "rubocop #{RuboCop::Version.version(true)}"
-end
-
-desc 'Run all tests and rubocop'
-task ci: %w[test rubocop_version rubocop]
+desc 'Run all tests'
+task ci: :test
 
 task default: :ci
