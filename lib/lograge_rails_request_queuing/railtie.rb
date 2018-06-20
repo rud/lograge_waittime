@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module LogrageRailsRequestQueuing
+  # Hook into Rails loading
   class Railtie < ::Rails::Engine
     isolate_namespace LogrageRailsRequestQueuing
 
