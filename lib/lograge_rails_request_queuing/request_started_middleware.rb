@@ -7,8 +7,8 @@ module LogrageRailsRequestQueuing
       @app = app
     end
 
-    def call(env, now = Time.now)
-      RequestStore[:lograge_request_handling_started] = now
+    def call(env)
+      RequestStore[:lograge_request_handling_started] = Time.now
       @app.call env
     end
   end
