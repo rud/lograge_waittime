@@ -7,12 +7,19 @@ module LogrageRailsRequestQueuing
 
     def initialize(env, request_started_at = Time.now.to_f)
       request_received_at = incoming_timestamp(env)
-      if request_received_at
-        @queued_ms = (request_started_at - request_received_at) * 1000
-      end
+      @queued_ms = calculate_queued_ms(request_received_at, request_started_at)
     end
 
     private
+
+    def calculate_queued_ms(request_received_at, request_started_at)
+      return if request_received_at.blank?
+
+      waiting_interval_secs = request_started_at - request_received_at
+      return if waiting_interval_secs < 0 # clocks out of alignment
+
+      waiting_interval_secs * 1000
+    end
 
     def incoming_timestamp(env)
       request_start = env['HTTP_X_REQUEST_START']
