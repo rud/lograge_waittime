@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/app/Dockerfile
+    environment:
+      - "RAILS_ENV=production"
     volumes:
       - .:/myapp
     ports:
