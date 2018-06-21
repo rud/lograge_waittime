@@ -39,13 +39,26 @@ Or install it yourself as:
 Then add it to your lograge initializer:
 
 ``` ruby
-  config.lograge.custom_options = lambda do |event|
+  config.lograge.custom_options = lambda do |_event|
+    custom_options = {}
+
     queued_ms = RequestStore[:lograge_request_queueing].queued_ms
-    {
-      rq: queued_ms.round(2)
-    } if queued_ms
+    custom_options[:rq] = queued_ms.round(2) if queued_ms
+
+    custom_options
   end
 ```
+
+In your nginx config, add:
+```
+proxy_set_header X-Request-Start "t=${msec}";`
+```
+
+This adds a new header to the incoming request, with current time in milliseconds as the value. 
+
+After this is deployet, you now get the `"rq=.."` value added to the output when the value is available.
+If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the nginx config.
+  
 
 ## Development
 
