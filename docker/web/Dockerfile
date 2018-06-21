@@ -1,5 +1,8 @@
 # Base image:
 FROM nginx
+
+MAINTAINER Laust Rud Jacobsen <laust@valuestream.io>
+
 # Install dependencies
 RUN apt-get update -qq && apt-get -y install apache2-utils
 
