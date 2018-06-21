@@ -8,3 +8,12 @@ services:
       - .:/myapp
     ports:
       - 3000:3000
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    depends_on:
+      - app
+    ports:
+      - 3030:80
