@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    environment:
+      - "RAILS_ENV=production"
+      - "RAILS_LOG_TO_STDOUT=true"
+    volumes:
+      - .:/myapp
+    ports:
+      - 3000:3000
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    depends_on:
+      - app
+    ports:
+      - 3030:80

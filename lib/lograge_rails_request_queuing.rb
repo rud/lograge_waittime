@@ -1,4 +1,4 @@
-require "lograge_rails_request_queuing/railtie"
+# frozen_string_literal: true
 
-module LogrageRailsRequestQueuing
-end
+require 'lograge'
+require 'lograge_rails_request_queuing/engine'

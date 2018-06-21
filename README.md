@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/rud/lograge_rails_request_queuing.svg?branch=master)](https://travis-ci.org/rud/lograge_rails_request_queuing)
 
-**Caveat**: This is currently README-driven development, so the implementation is not added yet.
-
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 Using the logstash formatter, the log output for a request will look something like this:
 
@@ -18,7 +16,7 @@ status=200 duration=58.33 view=40.43 db=15.26 rq=3.14 [...]
 ```
 
 Request queueing time is the time that passes between a request is received in Nginx, and until it hits the Rails stack in a web worker.
-Under normal load this value will be in the order of a handful milliseconds.
+Under normal load in production this value will be in the order of a handful milliseconds.
 However, if all Rails web-processes are busy, the number will quickly climb as individual requests are queued and waiting to be served.
 It's one of those numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
 
@@ -38,9 +36,29 @@ Or install it yourself as:
 
     $ gem install lograge_rails_request_queuing
 
-## Usage
+Then add it to your lograge initializer:
 
-TODO: Write usage instructions here
+``` ruby
+  config.lograge.custom_options = lambda do |_event|
+    custom_options = {}
+
+    queued_ms = RequestStore[:lograge_request_queueing].queued_ms
+    custom_options[:rq] = queued_ms.round(2) if queued_ms
+
+    custom_options
+  end
+```
+
+In your nginx config, add:
+```
+proxy_set_header X-Request-Start "t=${msec}";`
+```
+
+This adds a new header to the incoming request, with current time in milliseconds as the value. 
+
+After this is deployet, you now get the `"rq=.."` value added to the output when the value is available.
+If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the nginx config.
+  
 
 ## Development
 
