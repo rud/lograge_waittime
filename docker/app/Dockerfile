@@ -29,6 +29,9 @@ ADD . /myapp
 # Switch to the dummy app:
 WORKDIR /myapp/test/dummy
 
+# Precompile assets:
+RUN RAILS_ENV=production bundle exec rake assets:precompile
+
 EXPOSE 3000
 
 CMD [ "bundle", "exec", "puma", "-C", "config/puma.rb" ]
