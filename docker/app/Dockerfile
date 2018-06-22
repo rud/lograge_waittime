@@ -3,13 +3,13 @@ FROM ruby:2.5.1
 
 MAINTAINER Laust Rud Jacobsen <laust@valuestream.io>
 
-# create application directory
+# Create application directory
 RUN mkdir -p /myapp/lib/lograge_rails_request_queuing
 
+# Copy in only the files "bundle install" needs to run
 ADD lograge_rails_request_queuing.gemspec /myapp/lograge_rails_request_queuing.gemspec
 ADD lib/lograge_rails_request_queuing/version.rb /myapp/lib/lograge_rails_request_queuing/version.rb
-ADD Gemfile /myapp/Gemfile
-ADD Gemfile.lock /myapp/Gemfile.lock
+ADD Gemfile* /myapp/
 
 # Set our working directory inside the image
 WORKDIR /myapp
