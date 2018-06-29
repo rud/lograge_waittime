@@ -16,6 +16,7 @@ module LogrageRailsRequestQueuing
     end
 
     def request_queued_at
+      return if request_queued_float.blank?
       @request_queued_at ||= begin
         [1000, 1].each do |divisor|
           adjusted = Time.at(request_queued_float / divisor)
