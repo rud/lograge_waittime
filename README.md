@@ -67,6 +67,25 @@ After this is deployed, you now get the `"rq=.."` value added to the output when
 If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the nginx config.
   
 
+### Bonus feature: compact exception logging
+
+Add the following to your `config/initializers/lograge.rb` file:
+
+``` ruby
+  config.lograge.custom_options = lambda do |event|
+    if event.payload[:exception_object]
+      custom_options[:exception] = event.payload[:exception]
+      custom_options[:backtrace] = Array(event.payload[:exception_object].backtrace)
+    end
+    # ... see above ...
+  end
+
+  # Adding this removes the verbose exception output in the Rails log:
+  ActionDispatch::DebugExceptions.prepend(
+    LogrageRailsRequestQueuing::SilenceExceptionLogging
+  )
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
