@@ -23,7 +23,7 @@ module LogrageRailsRequestQueuing
         calculator.request_queued_raw,
       )
       assert_equal(
-        '2018-06-21T13:03:17+02:00',
+        '2018-06-21T11:03:17Z',
         calculator.request_queued_at.iso8601
       )
       assert_equal(
@@ -42,7 +42,7 @@ module LogrageRailsRequestQueuing
         calculator.request_queued_raw,
       )
       assert_equal(
-        '2018-06-21T13:03:17+02:00',
+        '2018-06-21T11:03:17Z',
         calculator.request_queued_at.iso8601
       )
       assert_equal(
