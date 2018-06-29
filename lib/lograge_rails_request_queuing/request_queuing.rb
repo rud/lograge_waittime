@@ -5,6 +5,8 @@ module LogrageRailsRequestQueuing
     # How long was the request queued for, in milliseconds
     attr_reader :queued_ms
 
+    REQUEST_START_HEADER = 'HTTP_X_REQUEST_START'
+
     def initialize(env, request_started_at = Time.now.to_f)
       request_received_at = incoming_timestamp(env)
       @queued_ms = calculate_queued_ms(request_received_at, request_started_at)
@@ -22,7 +24,7 @@ module LogrageRailsRequestQueuing
     end
 
     def incoming_timestamp(env)
-      request_start = env['HTTP_X_REQUEST_START']
+      request_start = env[REQUEST_START_HEADER]
       return nil if request_start.blank?
 
        # convert "t=1529578997.145" to a Float:
