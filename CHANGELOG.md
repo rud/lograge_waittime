@@ -8,4 +8,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### New feature
 
 - Add `LogrageRailsRequestQueuing::SilenceExceptionLogging` to optionally quiet down exception logging.
+- Add `LogrageRailsRequestQueuing::ExceptionDetails` to compactly report exception details in the log. 
 - Add support for Heroku request started timestamps that are given in ms not seconds.
