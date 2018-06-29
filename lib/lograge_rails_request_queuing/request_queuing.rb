@@ -9,7 +9,7 @@ module LogrageRailsRequestQueuing
     REQUEST_START_HEADER = 'HTTP_X_REQUEST_START'
     EARLIEST_REQUEST_DATE = Time.new(2000)
 
-    def initialize(env, request_started_at = Time.now.to_f)
+    def initialize(env, request_started_at = Time.zone.now.to_f)
       @request_queued_raw = request_start_header(env)
       @request_started_at = request_started_at
       @queued_ms = calculate_queued_ms
@@ -19,7 +19,7 @@ module LogrageRailsRequestQueuing
       return if request_queued_float.blank?
       @request_queued_at ||= begin
         [1000, 1].each do |divisor|
-          adjusted = Time.at(request_queued_float / divisor)
+          adjusted = Time.zone.at(request_queued_float / divisor)
           return adjusted if adjusted > EARLIEST_REQUEST_DATE
         end
       end
