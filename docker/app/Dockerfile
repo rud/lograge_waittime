@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y apt-transport-https
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get install -y yarn
+ENV PATH /root/.yarn/bin:$PATH
 
 # Create application directory
 RUN mkdir -p /myapp/lib/lograge_rails_request_queuing
