@@ -36,10 +36,16 @@ Or install it yourself as:
 
     $ gem install lograge_rails_request_queuing
 
-Then add it to your lograge initializer:
+Then add it to your lograge initializer, typically in `config/initializers/lograge.rb`:
 
 ``` ruby
-  config.lograge.custom_options = lambda do |_event|
+Rails.application.configure do
+  config.lograge.enabled = true
+
+  # Keep emitting the verbose logging for easier debug
+  config.lograge.keep_original_rails_log = !Rails.env.production?
+
+  config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
     queued_ms = RequestStore[:lograge_request_queueing].queued_ms
@@ -47,6 +53,7 @@ Then add it to your lograge initializer:
 
     custom_options
   end
+end
 ```
 
 In your nginx config, add:
