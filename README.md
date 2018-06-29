@@ -73,10 +73,10 @@ Add the following to your `config/initializers/lograge.rb` file:
 
 ``` ruby
   config.lograge.custom_options = lambda do |event|
-    if event.payload[:exception_object]
-      custom_options[:exception] = event.payload[:exception]
-      custom_options[:backtrace] = Array(event.payload[:exception_object].backtrace)
-    end
+    LogrageRailsRequestQueuing::ExceptionDetails.add_any_exception!(
+      event, custom_options
+    )
+
     # ... see above ...
   end
 
