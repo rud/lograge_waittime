@@ -86,6 +86,16 @@ Add the following to your `config/initializers/lograge.rb` file:
   )
 ```
 
+Exceptions logged look like this, with a few newlines added for readability here:
+
+```
+I, [2018-06-29T18:44:26.267292 #4]  INFO -- : [29f3a9f6-1848-4858-93be-6ad76a6b9389] 
+method=GET path=/ format=html controller=EchoController action=index status=500 
+error='ArgumentError: Insufficient mittens' duration=0.27 view=0.00 rq=4.12ms 
+exception=["ArgumentError", "Insufficient mittens"] 
+backtrace=["/app/app/controllers/echo_controller.rb:4:in `index'", "/app/vendor/bundle/ruby/2.5.0/gems/actionpack-5.2.0/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'", ...SNIP...]
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
