@@ -5,6 +5,6 @@ rvm:
   - 2.5.1
   - ruby-head
 env:
-  - RAILS_VERSION=5.2.0
-  - RAILS_VERSION=5.1
+  - RAILS_VERSION="~> 5.2.0"
+  - RAILS_VERSION="~> 5.1.0"
 script: bundle exec rake ci
