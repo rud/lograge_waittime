@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module LogrageRailsRequestQueuing
-  class RequestStartedMiddlewareTest < ActionDispatch::IntegrationTest
+  class RequestStartedMiddlewareTest < ActiveSupport::TestCase
     test 'middleware is installed' do
       assert Rails.application.middleware.include?(
         LogrageRailsRequestQueuing::RequestStartedMiddleware
