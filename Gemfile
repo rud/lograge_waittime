@@ -16,4 +16,8 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+# Let CI change the current Rails version using just an environment variable:
+rails_version = ENV['RAILS_VERSION'] || '~> 5.2.0'
+gem 'rails', rails_version
+
 gem 'puma'
