@@ -1,6 +1,6 @@
 # LogrageRailsRequestQueuing
 
-[![Build Status](https://travis-ci.org/rud/lograge_rails_request_queuing.svg?branch=master)](https://travis-ci.org/rud/lograge_rails_request_queuing)
+[![Build Status](https://travis-ci.com/rud/lograge_rails_request_queuing.svg?branch=master)](https://travis-ci.com/rud/lograge_rails_request_queuing)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 Using the logstash formatter, the log output for a request will look something like this:
