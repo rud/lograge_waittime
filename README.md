@@ -58,7 +58,7 @@ end
 
 In your nginx config, add:
 ```
-proxy_set_header X-Request-Start "t=${msec}";`
+proxy_set_header X-Request-Start "t=${msec}";
 ```
 
 This adds a new header to the incoming request, with current time in milliseconds as the value. 
