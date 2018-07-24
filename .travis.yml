@@ -2,8 +2,8 @@ cache: bundle
 sudo: false
 language: ruby
 rvm:
-  - 2.4.4
   - 2.5.1
+  - 2.4.4
   - ruby-head
 env:
   global:
