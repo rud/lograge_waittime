@@ -11,7 +11,7 @@ Using the logstash formatter, the log output for a request will look something l
 status=200 duration=58.33 view=40.43 db=15.26 controller=WelcomeController action=show
 ```
 
-This gem adds another field with how long the request spent in the request queue in nginx in milliseconds, the `rq` value:
+This gem adds another field with how long the request spent in the request queue in Nginx in milliseconds, the `rq` value:
 
 ```
 status=200 duration=58.33 view=40.43 db=15.26 rq=3.14 [...]
@@ -58,7 +58,7 @@ Rails.application.configure do
 end
 ```
 
-In your nginx config, add:
+In your Nginx config, add:
 ```
 proxy_set_header X-Request-Start "t=${msec}";
 ```
@@ -66,7 +66,7 @@ proxy_set_header X-Request-Start "t=${msec}";
 This adds a new header to the incoming request, with current time in milliseconds as the value. 
 
 After this is deployed, you now get the `"rq=.."` value added to the output when the value is available.
-If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the nginx config.
+If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the Nginx config.
   
 
 ### Bonus feature: compact exception logging
