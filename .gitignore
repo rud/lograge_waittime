@@ -1,5 +1,6 @@
 .bundle/
 log/*.log
+coverage/
 pkg/
 test/dummy/log/*.log
 test/dummy/node_modules/
