@@ -8,6 +8,7 @@ rvm:
 env:
   global:
     - CC_TEST_REPORTER_ID=b32cea54d80b9781aa7a3f827cd7763e317bd417a93aa86b1a2e290d830de8e4
+    - COVERAGE=true
   matrix:
     - RAILS_VERSION="~> 5.2.0"
     - RAILS_VERSION="~> 5.1.0"

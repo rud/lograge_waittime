@@ -12,3 +12,8 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 # require 'rails/test_unit/reporter'
 # Rails::TestUnitReporter.executable = 'bin/test'
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start
+end
