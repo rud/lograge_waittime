@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+if ENV['COVERAGE']
+  # Setup coverage loading as early as possible
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter %r{^/test/}
+  end
+end
+
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 

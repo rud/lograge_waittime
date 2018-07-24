@@ -16,7 +16,7 @@ module LogrageRailsRequestQueuing
     test 'parsing a t=<timestamp> header from nginx' do
       calculator = LogrageRailsRequestQueuing::RequestQueueing.new(
         { 'HTTP_X_REQUEST_START' => 't=1529578997.111' },
-        fake_now = 1529578998.33333
+        1529578998.33333
       )
       assert_equal(
         't=1529578997.111',
@@ -35,7 +35,7 @@ module LogrageRailsRequestQueuing
     test 'parsing a heroku request started header' do
       calculator = LogrageRailsRequestQueuing::RequestQueueing.new(
         { 'HTTP_X_REQUEST_START' => '1529578997111' },
-        fake_now = 1529578998.33333
+        1529578998.33333
       )
       assert_equal(
         '1529578997111',
