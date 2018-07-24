@@ -21,3 +21,7 @@ rails_version = ENV['RAILS_VERSION'] || '~> 5.2.0'
 gem 'rails', rails_version
 
 gem 'puma'
+
+group :test do
+  gem 'simplecov', require: false
+end

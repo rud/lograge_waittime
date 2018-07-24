@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
+if ENV['COVERAGE']
+  # Setup coverage loading as early as possible
+  require 'simplecov'
+  SimpleCov.start do
+    add_filter %r{^/test/}
+  end
+end
+
 # Configure Rails Environment
 ENV['RAILS_ENV'] = 'test'
 
@@ -12,8 +20,3 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 
 # require 'rails/test_unit/reporter'
 # Rails::TestUnitReporter.executable = 'bin/test'
-
-if ENV['COVERAGE']
-  require 'simplecov'
-  SimpleCov.start
-end
