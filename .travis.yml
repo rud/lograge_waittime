@@ -1,4 +1,4 @@
-cache: bundle
+cache: bundler
 sudo: false
 language: ruby
 rvm:
