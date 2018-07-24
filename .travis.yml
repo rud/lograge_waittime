@@ -1,4 +1,8 @@
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - /home/travis/.rvm/
+
 sudo: false
 language: ruby
 rvm:
