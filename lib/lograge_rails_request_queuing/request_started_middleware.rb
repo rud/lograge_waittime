@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'lograge_rails_request_queuing/request_queuing'
+
 module LogrageRailsRequestQueuing
   # Track at what time the request handling starts
   class RequestStartedMiddleware
@@ -8,9 +10,7 @@ module LogrageRailsRequestQueuing
     end
 
     def call(env)
-      require 'lograge_rails_request_queuing/request_queuing'
-
-      RequestStore[:lograge_request_queueing] = RequestQueueing.new(env)
+      RequestStore[:lograge_request_queueing] = LogrageRailsRequestQueuing::RequestQueueing.new(env)
       @app.call env
     end
   end
