@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
                 'CODE_OF_CONDUCT.md', 'Rakefile', 'README.md']
 
   s.add_dependency 'lograge'
-  s.add_dependency 'request_store'
+  s.add_dependency 'request_store', '1.5.0'
 
   s.add_development_dependency 'pry'
 end
