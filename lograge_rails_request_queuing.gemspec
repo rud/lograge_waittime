@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE',
                 'CODE_OF_CONDUCT.md', 'Rakefile', 'README.md']
 
-  s.add_dependency 'lograge'
+  s.add_dependency 'lograge', '0.11.2'
   s.add_dependency 'request_store'
 
   s.add_development_dependency 'pry'
