@@ -8,7 +8,7 @@ require 'lograge_rails_request_queuing/version'
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'lograge_rails_request_queuing'
-  s.version     = LogrageRailsRequestQueuing::VERSION
+  s.version     = LogrageRailsRequestQueuing::Version
   s.authors     = ['Laust Rud Jacobsen']
   s.email       = ['laust@valuestream.io']
   s.summary     = 'Add request queueing time to lograge output.'
