@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE',
-                'CODE_OF_CONDUCT.md', 'Rakefile', 'README.md']
+                'CODE_OF_CONDUCT.md', 'CHANGELOG.md', 'Rakefile', 'README.md']
 
   s.add_dependency 'lograge'
   s.add_dependency 'request_store'
