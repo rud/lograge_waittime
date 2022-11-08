@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module LogrageRailsRequestQueuing
-  class RequestQueuing
+  class RequestQueueing
     # How long was the request queued for, in milliseconds
     attr_reader :queued_ms
     attr_reader :request_started_at, :request_queued_raw
