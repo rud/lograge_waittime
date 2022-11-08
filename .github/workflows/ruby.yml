@@ -19,6 +19,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true # gather all results instead of stopping early
     strategy:
       matrix:
         ruby-version:
