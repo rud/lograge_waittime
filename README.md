@@ -1,8 +1,6 @@
 # LogrageRailsRequestQueuing
 
-[![Build Status](https://travis-ci.com/rud/lograge_rails_request_queuing.svg?branch=master)](https://travis-ci.com/rud/lograge_rails_request_queuing)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6a5a12083b7ac49e13b2/maintainability)](https://codeclimate.com/github/rud/lograge_rails_request_queuing/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6a5a12083b7ac49e13b2/test_coverage)](https://codeclimate.com/github/rud/lograge_rails_request_queuing/test_coverage)
+[![Ruby](https://github.com/rud/lograge_rails_request_queuing/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge_rails_request_queuing/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 Using the logstash formatter, the log output for a request will look something like this:
