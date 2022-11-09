@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'test_helper'
-require 'lograge_rails_request_queuing/request_queuing'
+require 'lograge/waittime/request_queuing'
 
-module LogrageRailsRequestQueuing
+module Lograge::Waittime
   class RequestQueuingTest < ActiveSupport::TestCase
     test 'when no timestamp header exist' do
-      calculator = LogrageRailsRequestQueuing::RequestQueueing.new(
+      calculator = Lograge::Waittime::RequestQueueing.new(
         { },
       )
       assert_nil(calculator.request_queued_raw)
@@ -14,7 +12,7 @@ module LogrageRailsRequestQueuing
     end
 
     test 'parsing a t=<timestamp> header from nginx' do
-      calculator = LogrageRailsRequestQueuing::RequestQueueing.new(
+      calculator = Lograge::Waittime::RequestQueueing.new(
         { 'HTTP_X_REQUEST_START' => 't=1529578997.111' },
         1529578998.33333
       )
@@ -33,7 +31,7 @@ module LogrageRailsRequestQueuing
     end
 
     test 'parsing a heroku request started header' do
-      calculator = LogrageRailsRequestQueuing::RequestQueueing.new(
+      calculator = Lograge::Waittime::RequestQueueing.new(
         { 'HTTP_X_REQUEST_START' => '1529578997111' },
         1529578998.33333
       )
