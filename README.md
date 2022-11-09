@@ -1,23 +1,25 @@
-# LogrageRailsRequestQueuing
+# `lograge-rq`
 
-[![Ruby](https://github.com/rud/lograge_rails_request_queuing/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge_rails_request_queuing/actions/workflows/ruby.yml)
+[![Ruby](https://github.com/rud/lograge-rq/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-rq/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
-Using the logstash formatter, the log output for a request will look something like this:
+The log output for a request will look something like this:
 
 ```
 status=200 duration=58.33 view=40.43 db=15.26 controller=WelcomeController action=show
 ```
 
-This gem adds another field with how long the request spent in the request queue in Nginx in milliseconds, the `rq` value:
+This gem adds another field with how long the request spent since arriving in the request queue in Nginx.
+The unit is milliseconds, and represented as the `rq` value:
 
 ```
-status=200 duration=58.33 view=40.43 db=15.26 rq=3.14 [...]
+status=200 duration=58.33 view=40.43 db=15.26 rq=3.14 controller=WelcomeController action=show
 ```
 
-Request queueing time is the time that passes between a request is received in Nginx, and until it hits the Rails stack in a web worker.
+Request queueing time is the time that passes between a request is received in the webserver (typically nginx), and until it hits the Rails stack in a web worker.
 Under normal load in production this value will be in the order of a handful milliseconds.
 However, if all Rails web-processes are busy, the number will quickly climb as individual requests are queued and waiting to be served.
+
 It's one of those numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
 
 ## Installation
@@ -25,7 +27,7 @@ It's one of those numbers that are good to keep an eye on in monitoring and is v
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lograge_rails_request_queuing'
+gem 'lograge-rq'
 ```
 
 And then execute:
@@ -34,7 +36,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install lograge_rails_request_queuing
+    $ gem install lograge-rq
 
 Then add it to your lograge initializer, typically in `config/initializers/lograge.rb`:
 
@@ -48,7 +50,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
-    queued_ms = RequestStore[:lograge_request_queueing].queued_ms
+    queued_ms = RequestStore[:lograge_rq].queued_ms
     custom_options[:rq] = queued_ms.round(2) if queued_ms
 
     custom_options
@@ -66,36 +68,6 @@ This adds a new header to the incoming request, with current time in millisecond
 
 After this is deployed, you now get the `"rq=.."` value added to the output when the value is available.
 If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the Nginx config.
-  
-
-### Bonus feature: compact exception logging
-
-Add the following to your `config/initializers/lograge.rb` file:
-
-``` ruby
-  config.lograge.custom_options = lambda do |event|
-    LogrageRailsRequestQueuing::ExceptionDetails.add_any_exception!(
-      event, custom_options
-    )
-
-    # ... see above ...
-  end
-
-  # Adding this removes the verbose exception output in the Rails log:
-  ActionDispatch::DebugExceptions.prepend(
-    LogrageRailsRequestQueuing::SilenceExceptionLogging
-  )
-```
-
-Exceptions logged look like this, with a few newlines added for readability here:
-
-```
-I, [2018-06-29T18:44:26.267292 #4]  INFO -- : [29f3a9f6-1848-4858-93be-6ad76a6b9389] 
-method=GET path=/ format=html controller=EchoController action=index status=500 
-error='ArgumentError: Insufficient mittens' duration=0.27 view=0.00 rq=4.12ms 
-exception=["ArgumentError", "Insufficient mittens"] 
-backtrace=["/app/app/controllers/echo_controller.rb:4:in `index'", "/app/vendor/bundle/ruby/2.5.0/gems/actionpack-5.2.0/lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'", ...SNIP...]
-```
 
 ## Development
 
