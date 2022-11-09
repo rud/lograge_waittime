@@ -16,11 +16,12 @@ The unit is milliseconds, and represented as the `wait` value:
 status=200 duration=58.33 view=40.43 db=15.26 wait=3.14 controller=WelcomeController action=show
 ```
 
-Request queueing time is the time that passes between a request is received in the webserver (typically nginx), and until it hits the Rails stack in a web worker.
-Under normal load in production this value will be in the order of a handful milliseconds.
+Wait time or request queueing time is the time that passes between a request is received in the webserver (typically NGINX), and until it hits the Rails stack in a web worker.
+Under normal load in production this value will be in the order of a few milliseconds.
 However, if all Rails web-processes are busy, the number will quickly climb as individual requests are queued and waiting to be served.
 
-It's one of those numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
+It's one of the key numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
+Long wait times will feel like a sluggish site for end users.
 
 ## Installation
 
@@ -58,13 +59,13 @@ Rails.application.configure do
 end
 ```
 
-In your Nginx config, add:
+In your NGINX config, add:
 ```
 proxy_set_header X-Request-Start "t=${msec}";
 ```
 
 This adds a new header to the incoming request, with current time in milliseconds as the value. 
-`msec` is supported from Nginx releases 1.2.6 and 1.3.9.
+`msec` is supported from NGINX releases 1.2.6 and 1.3.9.
 
 After this is deployed, you now get the `"wait=.."` value added to the output when the value is available.
 If you do not see the `"wait=.."` value in logging out, please double check you have added the new header in the NGINX config.
