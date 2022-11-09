@@ -25,6 +25,31 @@ However, if all Rails web-processes are busy, the number will quickly climb as i
 It's one of the key numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
 Long wait times will feel like a sluggish site for end users, and even though you may be seeing short durations to process requests, if the wait-time is large, then the end-user experience will still be bad.
 
+## Docker demo setup
+
+To quickly get a feel for the parts of the setup, a `docker-compose` sample configuration is included.
+The setup is fairly simple: requests first hit an NGINX instance, then they are forwarded to the Rails app.
+By looking at the log-output you can observe the request queueing time for each request as `wait`.
+
+Try it out by running:
+
+```
+docker-compose up
+```
+
+Then you can visit http://localhost:3030/echo and you will now see the live `wait=` output in the Rails log, like this:
+
+```
+method=GET path=/echo format=html controller=EchosController action=index status=200 duration=1.67 view=0.37 wait=1067.24
+```
+
+This particular example was the first request to a backend not yet fully started.
+This next request was through a warmed up stack:
+
+```
+method=GET path=/echo format=html controller=EchosController action=index status=200 duration=0.60 view=0.28 wait=14.37
+```
+
 ## Installation
 
 ### NGINX change

@@ -1,5 +1,5 @@
 # Base image:
-FROM ruby:2.5.1
+FROM ruby:2.7
 
 MAINTAINER Laust Rud Jacobsen <laust@valuestream.io>
 
@@ -13,15 +13,17 @@ RUN apt-get install -y yarn
 RUN mkdir -p /myapp/lib/lograge_rails_request_queuing
 
 # Copy in only the files "bundle install" needs to run
-ADD lograge_rails_request_queuing.gemspec /myapp/lograge_rails_request_queuing.gemspec
-ADD lib/lograge_rails_request_queuing/version.rb /myapp/lib/lograge_rails_request_queuing/version.rb
+ADD lograge_waittime.gemspec /myapp/lograge_waittime.gemspec
+ADD lib/lograge/waittime/version.rb /myapp/lib/lograge/waittime/version.rb
 ADD Gemfile* /myapp/
 
 # Set our working directory inside the image
 WORKDIR /myapp
 
 # Run bundle install before copying in the rest of the app
-RUN bundle install --jobs 20 --retry 5 --without development test
+RUN gem install bundler:2.3.25; \
+    bundle config set without 'development test'; \
+    bundle install --jobs 4 --retry 5
 
 # Time to add the rest of the app
 ADD . /myapp
