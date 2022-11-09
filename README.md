@@ -1,6 +1,6 @@
-# `lograge-rq`
+# `lograge-waittime`
 
-[![Ruby](https://github.com/rud/lograge-rq/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-rq/actions/workflows/ruby.yml)
+[![Ruby](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 The log output for a request will look something like this:
@@ -9,11 +9,11 @@ The log output for a request will look something like this:
 status=200 duration=58.33 view=40.43 db=15.26 controller=WelcomeController action=show
 ```
 
-This gem adds another field with how long the request spent since arriving in the request queue in Nginx.
-The unit is milliseconds, and represented as the `rq` value:
+This gem adds another field with how long the request waited to be processed, since arriving in the request queue in NGINX.
+The unit is milliseconds, and represented as the `wait` value:
 
 ```
-status=200 duration=58.33 view=40.43 db=15.26 rq=3.14 controller=WelcomeController action=show
+status=200 duration=58.33 view=40.43 db=15.26 wait=3.14 controller=WelcomeController action=show
 ```
 
 Request queueing time is the time that passes between a request is received in the webserver (typically nginx), and until it hits the Rails stack in a web worker.
@@ -27,7 +27,7 @@ It's one of those numbers that are good to keep an eye on in monitoring and is v
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lograge-rq'
+gem 'lograge-waittime'
 ```
 
 And then execute:
@@ -36,7 +36,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install lograge-rq
+    $ gem install lograge-waittime
 
 Then add it to your lograge initializer, typically in `config/initializers/lograge.rb`:
 
@@ -50,7 +50,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
-    queued_ms = RequestStore[:lograge_rq].queued_ms
+    queued_ms = RequestStore[:lograge_waittime].queued_ms
     custom_options[:rq] = queued_ms.round(2) if queued_ms
 
     custom_options
@@ -66,8 +66,8 @@ proxy_set_header X-Request-Start "t=${msec}";
 This adds a new header to the incoming request, with current time in milliseconds as the value. 
 `msec` is supported from Nginx releases 1.2.6 and 1.3.9.
 
-After this is deployed, you now get the `"rq=.."` value added to the output when the value is available.
-If you do not see the `"rq=.."` value in logging out, double check you have added the new header in the Nginx config.
+After this is deployed, you now get the `"wait=.."` value added to the output when the value is available.
+If you do not see the `"wait=.."` value in logging out, please double check you have added the new header in the NGINX config.
 
 ## Development
 
