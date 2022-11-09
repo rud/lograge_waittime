@@ -7,9 +7,8 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
-    queued_ms = RequestStore[:lograge_request_queueing].queued_ms
-    custom_options[:rq] = queued_ms.round(2) if queued_ms
-
+    queued_ms = ::RequestStore[:lograge_waittime].queued_ms
+    custom_options[:wait] = queued_ms.round(2) if queued_ms
 
     custom_options
   end

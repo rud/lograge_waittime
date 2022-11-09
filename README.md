@@ -52,7 +52,7 @@ Rails.application.configure do
     custom_options = {}
 
     queued_ms = RequestStore[:lograge_waittime].queued_ms
-    custom_options[:rq] = queued_ms.round(2) if queued_ms
+    custom_options[:wait] = queued_ms.round(2) if queued_ms
 
     custom_options
   end
