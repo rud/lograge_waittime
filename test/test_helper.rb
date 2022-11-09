@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-if ENV['COVERAGE']
+if ENV["COVERAGE"]
   # Setup coverage loading as early as possible
-  require 'simplecov'
+  require "simplecov"
   SimpleCov.start do
     add_filter %r{^/test/}
   end
 end
 
 # Configure Rails Environment
-ENV['RAILS_ENV'] = 'test'
+ENV["RAILS_ENV"] = "test"
 
-require_relative '../test/dummy/config/environment'
-require 'rails/test_help'
-require 'minitest/autorun'
+require_relative "../test/dummy/config/environment"
+require "rails/test_help"
+require "minitest/autorun"
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.

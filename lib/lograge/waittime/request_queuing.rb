@@ -5,7 +5,7 @@ module Lograge
       attr_reader :queued_ms
       attr_reader :request_started_at, :request_queued_raw
 
-      REQUEST_START_HEADER = 'HTTP_X_REQUEST_START'
+      REQUEST_START_HEADER = "HTTP_X_REQUEST_START"
       EARLIEST_REQUEST_DATE = Time.new(2000)
 
       def initialize(env, request_started_at = Time.zone.now.to_f)
@@ -16,11 +16,9 @@ module Lograge
 
       def request_queued_at
         return if request_queued_float.blank?
-        @request_queued_at ||= begin
-          [1000, 1].each do |divisor|
-            adjusted = Time.zone.at(request_queued_float / divisor)
-            return adjusted if adjusted > EARLIEST_REQUEST_DATE
-          end
+        @request_queued_at ||= [1000, 1].each do |divisor|
+          adjusted = Time.zone.at(request_queued_float / divisor)
+          return adjusted if adjusted > EARLIEST_REQUEST_DATE
         end
       end
 

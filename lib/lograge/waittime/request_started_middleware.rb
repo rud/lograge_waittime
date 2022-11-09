@@ -1,4 +1,4 @@
-require 'lograge/waittime/request_queuing'
+require "lograge/waittime/request_queuing"
 
 module Lograge
   module Waittime

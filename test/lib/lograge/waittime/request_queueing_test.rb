@@ -1,27 +1,27 @@
-require 'test_helper'
-require 'lograge/waittime/request_queuing'
+require "test_helper"
+require "lograge/waittime/request_queuing"
 
 module Lograge::Waittime
   class RequestQueuingTest < ActiveSupport::TestCase
-    test 'when no timestamp header exist' do
+    test "when no timestamp header exist" do
       calculator = Lograge::Waittime::RequestQueueing.new(
-        { },
+        {}
       )
       assert_nil(calculator.request_queued_raw)
       assert_nil(calculator.queued_ms)
     end
 
-    test 'parsing a t=<timestamp> header from nginx' do
+    test "parsing a t=<timestamp> header from nginx" do
       calculator = Lograge::Waittime::RequestQueueing.new(
-        { 'HTTP_X_REQUEST_START' => 't=1529578997.111' },
+        {"HTTP_X_REQUEST_START" => "t=1529578997.111"},
         1529578998.33333
       )
       assert_equal(
-        't=1529578997.111',
-        calculator.request_queued_raw,
+        "t=1529578997.111",
+        calculator.request_queued_raw
       )
       assert_equal(
-        '2018-06-21T11:03:17Z',
+        "2018-06-21T11:03:17Z",
         calculator.request_queued_at.iso8601
       )
       assert_equal(
@@ -30,17 +30,17 @@ module Lograge::Waittime
       )
     end
 
-    test 'parsing a heroku request started header' do
+    test "parsing a heroku request started header" do
       calculator = Lograge::Waittime::RequestQueueing.new(
-        { 'HTTP_X_REQUEST_START' => '1529578997111' },
+        {"HTTP_X_REQUEST_START" => "1529578997111"},
         1529578998.33333
       )
       assert_equal(
-        '1529578997111',
-        calculator.request_queued_raw,
+        "1529578997111",
+        calculator.request_queued_raw
       )
       assert_equal(
-        '2018-06-21T11:03:17Z',
+        "2018-06-21T11:03:17Z",
         calculator.request_queued_at.iso8601
       )
       assert_equal(

@@ -1,2 +1,2 @@
-require 'lograge'
-require 'lograge/waittime/engine'
+require "lograge"
+require "lograge/waittime/engine"
