@@ -10,14 +10,7 @@ Rails.application.configure do
     queued_ms = RequestStore[:lograge_request_queueing].queued_ms
     custom_options[:rq] = queued_ms.round(2) if queued_ms
 
-    LogrageRailsRequestQueuing::ExceptionDetails.add_any_exception!(
-      event, custom_options
-    )
 
     custom_options
   end
-
-  ActionDispatch::DebugExceptions.prepend(
-    LogrageRailsRequestQueuing::SilenceExceptionLogging
-  )
 end
