@@ -3,7 +3,8 @@
 [![Ruby](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
-The log output for a request will look something like this:
+
+The log output for a request looks something like this:
 
 ```
 status=200 duration=58.33 view=40.43 db=15.26 controller=WelcomeController action=show
@@ -17,29 +18,36 @@ status=200 duration=58.33 view=40.43 db=15.26 wait=3.14 controller=WelcomeContro
 ```
 
 Wait time or request queueing time is the time that passes between a request is received in the webserver (typically NGINX), and until it hits the Rails stack in a web worker.
+
 Under normal load in production this value will be in the order of a few milliseconds.
 However, if all Rails web-processes are busy, the number will quickly climb as individual requests are queued and waiting to be served.
 
 It's one of the key numbers that are good to keep an eye on in monitoring and is very helpful to include when graphing response times over time.
-Long wait times will feel like a sluggish site for end users.
+Long wait times will feel like a sluggish site for end users, and even though you may be seeing short durations to process requests, if the wait-time is large, then the end-user experience will still be bad.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+### NGINX change
 
-```ruby
-gem 'lograge-waittime'
+In your NGINX config, add:
+```
+proxy_set_header X-Request-Start "t=${msec}";
+```
+to the relevant part of your server setup. According to [NGINX docs](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header), it can go in one of `http`, `server`, or `location`.
+
+This adds a new header to all incoming requests, with current time in milliseconds as the value.
+`msec` is supported from NGINX releases 1.2.6 and 1.3.9.
+
+### Rails app changes:
+
+Execute:
+
+``` shell
+bundle add lograge-waittime
 ```
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install lograge-waittime
-
-Then add it to your lograge initializer, typically in `config/initializers/lograge.rb`:
+Then add it to your existing lograge initializer, typically in `config/initializers/lograge.rb`.
+If you are just setting up lograge, please check that projects documentation for up to date information.
 
 ``` ruby
 Rails.application.configure do
@@ -51,6 +59,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
+    # lograge-waittime setup:
     queued_ms = RequestStore[:lograge_waittime].queued_ms
     custom_options[:wait] = queued_ms.round(2) if queued_ms
 
@@ -59,16 +68,8 @@ Rails.application.configure do
 end
 ```
 
-In your NGINX config, add:
-```
-proxy_set_header X-Request-Start "t=${msec}";
-```
-
-This adds a new header to the incoming request, with current time in milliseconds as the value. 
-`msec` is supported from NGINX releases 1.2.6 and 1.3.9.
-
 After this is deployed, you now get the `"wait=.."` value added to the output when the value is available.
-If you do not see the `"wait=.."` value in logging out, please double check you have added the new header in the NGINX config.
+If you do not see the `"wait=.."` value in logging out, please double check you have added the new header in your NGINX config and deployed it.
 
 ## Development
 
@@ -107,3 +108,8 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the LogrageRailsRequestQueuing project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rud/lograge_rails_request_queuing/blob/master/CODE_OF_CONDUCT.md).
+
+## Historical note
+
+Until 2022-11 this gem was called [lograge_rails_request_queuing](https://rubygems.org/gems/lograge_rails_request_queuing).
+It was renamed to make it easier to talk about.
