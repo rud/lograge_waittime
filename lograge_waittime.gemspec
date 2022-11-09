@@ -20,6 +20,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'lograge', '~> 0.12.0'
   s.add_dependency 'request_store', '~> 1.0'
-
-  s.add_development_dependency 'pry', '~> 0.11'
 end

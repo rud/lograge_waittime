@@ -20,6 +20,7 @@ gem 'rails', rails_version
 
 gem 'puma'
 
-group :test do
+group :development, :test do
+  gem 'pry', '~> 0.11'
   gem 'simplecov', require: false
 end
