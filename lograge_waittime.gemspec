@@ -7,7 +7,7 @@ require 'lograge/waittime/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'lograge'
+  s.name        = 'lograge-waittime'
   s.version     = Lograge::Waittime::Version
   s.authors     = ['Laust Rud Jacobsen']
   s.email       = ['laust@valuestream.io']
@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'CHANGELOG.md',
                 'CODE_OF_CONDUCT.md', 'Rakefile', 'README.md']
 
-  s.add_dependency 'lograge'
-  s.add_dependency 'request_store'
+  s.add_dependency 'lograge', '~> 0.12.0'
+  s.add_dependency 'request_store', '~> 1.0'
 
-  s.add_development_dependency 'pry'
+  s.add_development_dependency 'pry', '~> 0.11'
 end
