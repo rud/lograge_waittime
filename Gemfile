@@ -1,9 +1,7 @@
-# frozen_string_literal: true
-
-source 'https://rubygems.org'
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# Declare your gem's dependencies in lograge_rails_request_queuing.gemspec.
+# Declare your gem's dependencies in lograge_waittime.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
@@ -17,11 +15,13 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 # Let CI change the current Rails version using just an environment variable:
-rails_version = ENV['RAILS_VERSION'] || '~> 5.2.0'
-gem 'rails', rails_version
+rails_version = ENV["RAILS_VERSION"] || "~> 5.2.0"
+gem "rails", rails_version
 
-gem 'puma'
+gem "puma"
+gem "standard"
 
-group :test do
-  gem 'simplecov', require: false
+group :development, :test do
+  gem "pry", "~> 0.11"
+  gem "simplecov", require: false
 end

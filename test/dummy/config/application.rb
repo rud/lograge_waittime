@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -14,7 +14,7 @@ require "action_controller/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "lograge_rails_request_queuing"
+require "lograge_waittime"
 
 module Dummy
   class Application < Rails::Application
@@ -25,7 +25,6 @@ module Dummy
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-    config.time_zone = 'UTC'
+    config.time_zone = "UTC"
   end
 end
-
