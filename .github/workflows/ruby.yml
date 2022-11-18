@@ -29,6 +29,8 @@ jobs:
         include:
           - ruby-version: '3.0'
             rails-version: '~> 6.1.0'
+          - ruby-version: '3.1'
+            rails-version: '~> 7.0.0'
 
     env:
       RAILS_ENV: test
