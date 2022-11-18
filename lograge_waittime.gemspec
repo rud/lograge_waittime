@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency "lograge", "~> 0.10"
   s.add_dependency "request_store", "~> 1.0"
   s.add_dependency "railties", ">= 5.0" # Need access to Rails::Engine API
+  s.add_dependency "zeitwerk"
 end
