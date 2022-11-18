@@ -37,7 +37,7 @@ Try it out by running:
 docker-compose up
 ```
 
-Then you can visit http://localhost:3030/echo and you will now see the live `wait=` output in the Rails log, like this:
+Then you can visit [http://localhost:3030/echo](http://localhost:3030/echo) and you will now see the live `wait=` output in the Rails log, like this:
 
 ```
 method=GET path=/echo format=html controller=EchosController action=index status=200 duration=1.67 view=0.37 wait=1067.24

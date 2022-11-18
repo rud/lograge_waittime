@@ -14,7 +14,7 @@ RUN mkdir -p /myapp/lib/lograge_rails_request_queuing
 
 # Copy in only the files "bundle install" needs to run
 ADD lograge_waittime.gemspec /myapp/lograge_waittime.gemspec
-ADD lib/lograge/waittime/version.rb /myapp/lib/lograge/waittime/version.rb
+ADD lib/lograge_waittime/version.rb /myapp/lib/lograge_waittime/version.rb
 ADD Gemfile* /myapp/
 
 # Set our working directory inside the image
