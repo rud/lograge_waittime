@@ -20,9 +20,9 @@ gem "rails", rails_version
 
 gem "lograge"
 gem "puma"
-gem "standard"
 
 group :development, :test do
-  gem "pry", "~> 0.11"
+  gem "pry"
   gem "simplecov", require: false
+  gem "standard"
 end
