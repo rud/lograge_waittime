@@ -1,8 +1,7 @@
 Rails.application.configure do
   config.lograge.enabled = true
 
-  # Keep emitting the verbose logging for easier debug
-  config.lograge.keep_original_rails_log = !Rails.env.production?
+  config.lograge.keep_original_rails_log = false
 
   config.lograge.custom_options = lambda do |_event|
     custom_options = {}
