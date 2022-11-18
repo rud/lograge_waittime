@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/myapp
     ports:
-      - 3000:3000
+      - 3020:3000
 
   web:
     build:

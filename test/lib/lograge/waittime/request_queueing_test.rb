@@ -1,10 +1,10 @@
 require "test_helper"
-require "lograge/waittime/request_queuing"
+require "lograge_waittime/request_queuing"
 
-module Lograge::Waittime
+module LogrageWaittime
   class RequestQueuingTest < ActiveSupport::TestCase
     test "when no timestamp header exist" do
-      calculator = Lograge::Waittime::RequestQueueing.new(
+      calculator = LogrageWaittime::RequestQueuing.new(
         {}
       )
       assert_nil(calculator.request_queued_raw)
@@ -12,7 +12,7 @@ module Lograge::Waittime
     end
 
     test "parsing a t=<timestamp> header from nginx" do
-      calculator = Lograge::Waittime::RequestQueueing.new(
+      calculator = LogrageWaittime::RequestQueuing.new(
         {"HTTP_X_REQUEST_START" => "t=1529578997.111"},
         1529578998.33333
       )
@@ -31,7 +31,7 @@ module Lograge::Waittime
     end
 
     test "parsing a heroku request started header" do
-      calculator = Lograge::Waittime::RequestQueueing.new(
+      calculator = LogrageWaittime::RequestQueuing.new(
         {"HTTP_X_REQUEST_START" => "1529578997111"},
         1529578998.33333
       )

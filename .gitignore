@@ -2,6 +2,7 @@
 log/*.log
 coverage/
 pkg/
+lograge_waittime-*.gem
 test/dummy/log/*.log
 test/dummy/node_modules/
 test/dummy/yarn-error.log

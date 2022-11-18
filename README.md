@@ -1,6 +1,6 @@
-# `lograge-waittime`
+# `lograge_waittime`
 
-[![Ruby](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml)
+[![Ruby](https://github.com/rud/lograge_waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge_waittime/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 
@@ -37,7 +37,7 @@ Try it out by running:
 docker-compose up
 ```
 
-Then you can visit http://localhost:3030/echo and you will now see the live `wait=` output in the Rails log, like this:
+Then you can visit [http://localhost:3030/echo](http://localhost:3030/echo) and you will now see the live `wait=` output in the Rails log, like this:
 
 ```
 method=GET path=/echo format=html controller=EchosController action=index status=200 duration=1.67 view=0.37 wait=1067.24
@@ -68,7 +68,7 @@ This adds a new header to all incoming requests, with current time in millisecon
 Execute:
 
 ``` shell
-bundle add lograge-waittime
+bundle add lograge_waittime
 ```
 
 Then add it to your existing lograge initializer, typically in `config/initializers/lograge.rb`.
@@ -84,7 +84,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
-    # lograge-waittime setup:
+    # lograge_waittime setup:
     queued_ms = RequestStore[:lograge_waittime].queued_ms
     custom_options[:wait] = queued_ms.round(2) if queued_ms
 
@@ -111,6 +111,7 @@ bundle exec rake
 If you prefer a oneliner for testing a combination, try this:
 ```
 (asdf shell ruby 2.7.6; export RAILS_VERSION="~> 5.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
+(asdf shell ruby 2.7.6; export RAILS_VERSION="~> 6.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 2.7.6; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
