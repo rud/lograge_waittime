@@ -18,6 +18,7 @@ gemspec
 rails_version = ENV["RAILS_VERSION"] || "~> 6.0.0"
 gem "rails", rails_version
 
+gem "lograge"
 gem "puma"
 gem "standard"
 
