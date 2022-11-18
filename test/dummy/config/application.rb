@@ -14,7 +14,6 @@ require "action_controller/railtie"
 require "rails/test_unit/railtie"
 
 Bundler.require(*Rails.groups)
-require "lograge_waittime"
 
 module Dummy
   class Application < Rails::Application
