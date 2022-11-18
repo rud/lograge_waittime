@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+* Zeitwerk did not work seamlessly with the previous gem name, trying again with `lograge_waittime`.
+
 ## 0.3.1 - 2022-11-18
 
 - Actually bumping version.rb to match

@@ -7,7 +7,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |_event|
     custom_options = {}
 
-    # lograge-waittime setup:
+    # lograge_waittime setup:
     queued_ms = ::RequestStore[:lograge_waittime].queued_ms
     custom_options[:wait] = queued_ms.round(2) if queued_ms
 

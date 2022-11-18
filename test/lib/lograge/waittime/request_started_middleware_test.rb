@@ -1,10 +1,10 @@
 require "test_helper"
 
-module Lograge::Waittime
+module LogrageWaittime
   class RequestStartedMiddlewareTest < ActiveSupport::TestCase
     test "middleware is installed" do
       assert Rails.application.middleware.include?(
-        Lograge::Waittime::RequestStartedMiddleware
+        LogrageWaittime::RequestStartedMiddleware
       )
     end
 
@@ -14,7 +14,7 @@ module Lograge::Waittime
       fake_app = Minitest::Mock.new("fake_app")
       fake_app.expect(:call, nil, [env])
 
-      middleware = Lograge::Waittime::RequestStartedMiddleware.new(fake_app)
+      middleware = LogrageWaittime::RequestStartedMiddleware.new(fake_app)
       middleware.call(env)
 
       assert_mock fake_app

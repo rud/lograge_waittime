@@ -3,16 +3,16 @@
 $LOAD_PATH.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
-require "lograge/waittime/version"
+require "lograge_waittime/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name = "lograge-waittime"
-  s.version = Lograge::Waittime::Version
+  s.name = "lograge_waittime"
+  s.version = LogrageWaittime::VERSION
   s.authors = ["Laust Rud Jacobsen"]
   s.email = ["laust@valuestream.io"]
   s.summary = "Add webserver request queueing time to lograge output."
-  s.homepage = "https://github.com/rud/lograge-waittime"
+  s.homepage = "https://github.com/rud/lograge_waittime"
   s.license = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "CHANGELOG.md",

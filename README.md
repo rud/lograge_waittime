@@ -1,6 +1,6 @@
-# `lograge-waittime`
+# `lograge_waittime`
 
-[![Ruby](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge-waittime/actions/workflows/ruby.yml)
+[![Ruby](https://github.com/rud/lograge_waittime/actions/workflows/ruby.yml/badge.svg)](https://github.com/rud/lograge_waittime/actions/workflows/ruby.yml)
 
 [Lograge](https://github.com/roidrage/lograge) makes Rails logging output a lot more more useful.
 
@@ -68,7 +68,7 @@ This adds a new header to all incoming requests, with current time in millisecon
 Execute:
 
 ``` shell
-bundle add lograge-waittime
+bundle add lograge_waittime
 ```
 
 Then add it to your existing lograge initializer, typically in `config/initializers/lograge.rb`.
@@ -84,7 +84,7 @@ Rails.application.configure do
   config.lograge.custom_options = lambda do |event|
     custom_options = {}
 
-    # lograge-waittime setup:
+    # lograge_waittime setup:
     queued_ms = RequestStore[:lograge_waittime].queued_ms
     custom_options[:wait] = queued_ms.round(2) if queued_ms
 
