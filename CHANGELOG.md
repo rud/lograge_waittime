@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.3.1 - 2022-11-18
+
+- Actually bumping version.rb to match
+
 ## 0.3.0 - 2022-11-18
 
 - BREAKING: Rename this gem to "lograge-waittime". The old name was unwieldy and even had a typo to prove it.
