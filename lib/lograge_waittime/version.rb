@@ -1,3 +1,3 @@
 module LogrageWaittime
-  VERSION = "0.3.2.pre1"
+  VERSION = "0.4.0"
 end
