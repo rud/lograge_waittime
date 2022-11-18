@@ -111,6 +111,7 @@ bundle exec rake
 If you prefer a oneliner for testing a combination, try this:
 ```
 (asdf shell ruby 2.7.6; export RAILS_VERSION="~> 5.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
+(asdf shell ruby 2.7.6; export RAILS_VERSION="~> 6.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 2.7.6; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
