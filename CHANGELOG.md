@@ -5,9 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.3.0 - 2022-11-18
+
 - BREAKING: Rename this gem to "lograge-waittime". The old name was unwieldy and even had a typo to prove it.
 - BREAKING: Removed exception silencing to focus the code more narrowly.
-- Removing explicit Rails 4.2.x testing
+- Removing explicit testing of Rails before 5.2. 
+- Added CI testing of Rails version up to and including Rails 6.1.x with Ruby 3.0.x
 
 ## 0.2.1 - 2018-07-01
 
