@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+## 0.4.1 - 2023-02-09
+
+* Testing: Added Rails 7.0 on Ruby 3.1 to test matrix
+
 ## 0.4.0 - 2022-11-18
 
 * Zeitwerk did not work seamlessly with the previous gem name, switching to `lograge_waittime`.
