@@ -5,6 +5,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+* Testing: Added Rails 7.0 on Ruby 3.2 to test matrix
+
 ## 0.4.1 - 2023-02-09
 
 * Testing: Added Rails 7.0 on Ruby 3.1 to test matrix
