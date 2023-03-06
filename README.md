@@ -50,6 +50,8 @@ This next request was through a warmed up stack:
 method=GET path=/echo format=html controller=EchosController action=index status=200 duration=0.60 view=0.28 wait=14.37
 ```
 
+For comparison, you can visit [http://localhost:3020/echo](http://localhost:3020/echo) to see the behaviour when the NGINX queue start header is missing.
+
 ## Installation
 
 ### NGINX change
@@ -60,8 +62,10 @@ proxy_set_header X-Request-Start "t=${msec}";
 ```
 to the relevant part of your server setup. According to [NGINX docs](http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header), it can go in one of `http`, `server`, or `location`.
 
+Example from the demo config is at [nginx.conf](docker/web/nginx.conf#L36-L37).
+
 This adds a new header to all incoming requests, with current time in milliseconds as the value.
-`msec` is supported from NGINX releases 1.2.6 and 1.3.9.
+`msec` is supported from NGINX releases 1.2.6 and 1.3.9 (both from 2012).
 
 ### Rails app changes:
 
@@ -72,7 +76,7 @@ bundle add lograge_waittime
 ```
 
 Then add it to your existing lograge initializer, typically in `config/initializers/lograge.rb`.
-If you are just setting up lograge, please check that projects documentation for up to date information.
+If you are just setting up lograge, please check the [lograge projects documentation](https://www.rubydoc.info/gems/lograge/) for up to date information.
 
 ``` ruby
 Rails.application.configure do
