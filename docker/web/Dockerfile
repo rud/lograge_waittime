@@ -1,10 +1,7 @@
 # Base image:
 FROM nginx
 
-MAINTAINER Laust Rud Jacobsen <laust@valuestream.io>
-
-# Install dependencies
-RUN apt-get update -qq && apt-get -y install apache2-utils
+LABEL MAINTAINER="Laust Rud Jacobsen <laust@valuestream.io>"
 
 # establish where Nginx should look for files
 ENV RAILS_ROOT /var/www/app_name

@@ -27,14 +27,14 @@ Long wait times will feel like a sluggish site for end users, and even though yo
 
 ## Docker demo setup
 
-To quickly get a feel for the parts of the setup, a `docker-compose` sample configuration is included.
+To quickly get a feel for the parts of the setup, a `docker compose` sample configuration is included.
 The setup is fairly simple: requests first hit an NGINX instance, then they are forwarded to the Rails app.
 By looking at the log-output you can observe the request queueing time for each request as `wait`.
 
 Try it out by running:
 
 ```
-docker-compose up
+docker compose up
 ```
 
 Then you can visit [http://localhost:3030/echo](http://localhost:3030/echo) and you will now see the live `wait=` output in the Rails log, like this:

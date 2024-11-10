@@ -1,5 +1,5 @@
-# Base image:
-FROM ruby:2.7
+# TASK[BUMP_RUBY] - update ruby version here
+FROM ruby:3.3
 
 MAINTAINER Laust Rud Jacobsen <laust@valuestream.io>
 
@@ -21,7 +21,8 @@ ADD Gemfile* /myapp/
 WORKDIR /myapp
 
 # Run bundle install before copying in the rest of the app
-RUN gem install bundler:2.3.25; \
+# TASK[BUMP_RUBY] - update bundler version
+RUN gem install bundler:2.5.21; \
     bundle config set without 'development test'; \
     bundle install --jobs 4 --retry 5
 
