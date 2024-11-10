@@ -22,7 +22,6 @@ gem "lograge"
 gem "puma"
 
 group :development, :test do
-  gem "pry"
   gem "simplecov", require: false
   gem "standard"
 end
