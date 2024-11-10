@@ -120,7 +120,7 @@ If you prefer a oneliner for testing a combination, try this:
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.0.4; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 (asdf shell ruby 3.1.2; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf shell ruby 3.2.0; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
+(asdf shell ruby 3.3.5; export RAILS_VERSION="~> 8.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 ```
 
 It assumes you have [`asdf`](https://asdf-vm.com/) installed to manage your ruby versions, which is very convenient.

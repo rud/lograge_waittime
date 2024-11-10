@@ -15,7 +15,7 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 # Let CI change the current Rails version using just an environment variable:
-rails_version = ENV["RAILS_VERSION"] || "~> 6.0.0"
+rails_version = ENV.fetch("RAILS_VERSION", "~> 8.0.0")
 gem "rails", rails_version
 
 gem "lograge"
