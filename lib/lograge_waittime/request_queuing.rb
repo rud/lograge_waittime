@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LogrageWaittime
   class RequestQueuing
     # How long was the request queued for, in milliseconds

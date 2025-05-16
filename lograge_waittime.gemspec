@@ -18,8 +18,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "CHANGELOG.md",
     "CODE_OF_CONDUCT.md", "Rakefile", "README.md"]
 
-  s.add_dependency "lograge", "~> 0.10"
-  s.add_dependency "request_store", "~> 1.0"
   s.add_dependency "railties", ">= 8.0" # Need access to Rails::Engine API
   s.add_dependency "zeitwerk"
 end
