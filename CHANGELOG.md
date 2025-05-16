@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
+* Testing: Added Rails 8.0 on Ruby 3.4 to test matrix
+* Removing support for Ruby versions prior to 3.1.7, and Rails versions prior to 8.0
+
 ## 0.4.2 - 2024-11-10
 
 * Testing: Added Rails 7.0 on Ruby 3.2 to test matrix
