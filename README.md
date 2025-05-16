@@ -107,20 +107,15 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 If you want to test using a specific Rails version locally, use this method:
 
 ``` shell-interaction
-export RAILS_VERSION="~> 5.1" 
+export RAILS_VERSION="~> 8.0" 
 bundle update
 bundle exec rake
 ```
 
 If you prefer a oneliner for testing a combination, try this:
 ```
-(asdf set ruby 2.7.6; export RAILS_VERSION="~> 5.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 2.7.6; export RAILS_VERSION="~> 6.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 2.7.6; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 3.0.4; export RAILS_VERSION="~> 6.1.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 3.0.4; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 3.1.2; export RAILS_VERSION="~> 7.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
-(asdf set ruby 3.3.5; export RAILS_VERSION="~> 8.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
+(asdf set ruby 3.3.8; export RAILS_VERSION="~> 8.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
+(asdf set ruby 3.4.3; export RAILS_VERSION="~> 8.0.0"; rm Gemfile.lock; bundle install; bundle exec rake ci)
 ```
 
 It assumes you have [`asdf`](https://asdf-vm.com/) installed to manage your ruby versions, which is very convenient.
