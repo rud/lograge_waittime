@@ -89,7 +89,7 @@ Rails.application.configure do
     custom_options = {}
 
     # lograge_waittime setup:
-    queued_ms = RequestStore[:lograge_waittime].queued_ms
+    queued_ms = LogrageWaittime::RequestQueuingStore.request_waittime.queued_ms
     custom_options[:wait] = queued_ms.round(2) if queued_ms
 
     custom_options

@@ -5,8 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased
 
-* Testing: Added Rails 8.0 on Ruby 3.4 to test matrix
-* Removing support for Ruby versions prior to 3.1.7, and Rails versions prior to 8.0
+* BREAKING: Replace `RequestStore` with an `ActiveSupport::CurrentAttributes` derived class. Fewer runtime dependencies.
+  * To upgrade, update your `config/initializers/lograge.rb` file like this:
+    * replace: `queued_ms = RequestStore[:lograge_waittime].queued_ms` 
+    * with: `queued_ms = LogrageWaittime::RequestQueuingStore.request_waittime.queued_ms`
+* Testing: Removing support for Rails < 8.0 and Ruby < 3.1.7 
+* Testing: Added Rails 8.0 + Ruby 3.4 to test matrix
 
 ## 0.4.2 - 2024-11-10
 

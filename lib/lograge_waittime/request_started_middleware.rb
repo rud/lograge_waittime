@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LogrageWaittime
   # Track at what time the request handling starts
   class RequestStartedMiddleware
@@ -6,7 +8,7 @@ module LogrageWaittime
     end
 
     def call(env)
-      ::RequestStore[:lograge_waittime] = ::LogrageWaittime::RequestQueuing.new(env)
+      ::LogrageWaittime::RequestQueuingStore.request_waittime = ::LogrageWaittime::RequestQueuing.new(env)
       @app.call env
     end
   end
